@@ -1,0 +1,56 @@
+# Food Safe Repository - Python Backend + React Frontend
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+venv/
+.venv/
+env/
+.env
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# React/Node.js
+node_modules/
+build/
+dist/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+*.tsbuildinfo
+.eslintcache
+
+labs_scopes/
+
+# IDE/Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+*~
+
+# Security
+*.pem
+*.key
+*.cert
+secrets.json
+.secrets
+
+# Temporary
+*.tmp
+*.temp
+*.bak
+
+/designs

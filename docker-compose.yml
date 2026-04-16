@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/food_testing/fssai_dump.sql:/docker-entrypoint-initdb.d/fssai_dump.sql:ro
+    container_name: fssai-postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend/food_testing
+    env_file:
+      - .env
+    container_name: fssai-backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend/food-testing-app
+    ports:
+      - "5173:80"
+    container_name: fssai-frontend
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+    driver: local
